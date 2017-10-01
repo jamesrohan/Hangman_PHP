@@ -43,6 +43,7 @@ session_start();
 			<!-- Enter Button -->
 			<p>
 				<input type="submit" value="Enter" name="submit"></input>
+				<input type="submit" value="Enter" name="submit"></input>
 			</p>
 			
 			
@@ -105,10 +106,25 @@ session_start();
 						
 						
 						
-							//Checking to see if the User Input Ltter is inside of the word. 
-							if( stripos($words[$_SESSION["CLUE_IDX"]], $user_input) !== true ){
-								echo "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
+							//Checking to see if the User Input Ltter is inside of the word. Update Image if user input is not found in the word
+							//https://secure.php.net/manual/en/function.stripos.php
+							if( stripos($words[$_SESSION["CLUE_IDX"]], $user_input) === false ){
+								
+								//Index out of Bounds protection. 3 is the size of the image array
+								if($_SESSION["IMG_IDX"]++ < 3){
+									echo "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
+									}
+								// Update Image Index	
 								$_SESSION["IMG_IDX"]++;
+								
+									if($_SESSION["IMG_IDX"]++ > 3){// 3 Corresponds to Size of Image Array
+										echo "<p>"."Game Over"."</p>";
+										// remove all session variables
+										session_unset(); 
+
+										// destroy the session 
+										session_destroy(); 
+									}
 								
 							}
 						
