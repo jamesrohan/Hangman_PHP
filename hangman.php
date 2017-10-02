@@ -22,15 +22,6 @@ session_start();
 	</p>
 	
 	<p>
-		<?php
-		
-		
-		?>
-		
-	</p>
-	
-	
-	<p>
 		<form action="" method="post">
 			<!-- <p> <?php //echo $words[$clue_index]; ?> </p> -->
 			  
@@ -43,7 +34,7 @@ session_start();
 			<!-- Enter Button -->
 			<p>
 				<input type="submit" value="Enter" name="submit"></input>
-				<input type="submit" value="Enter" name="submit"></input>
+				<!-- <input type="submit" value="Enter" name="submit"></input> -->
 			</p>
 			
 			
@@ -51,27 +42,9 @@ session_start();
 			<p>
 				<?php
 				
-					//Array of Images
-					$images = array('./img/1.jpg', './img/2.jpg', './img/3.jpg');
-					
-					//Array of "words and clues" their index's correspond 1 to 1
-					//Dictionary of Words to pick from
-					$words = array("Carrot", "Banana");
-					$clues = array('Vegetable','Fruit');
-					
-					
-					//Picking a random word from the above defined Word dictionary
-					if(!isset($_SESSION["CLUE_IDX"])){ // We dont want this variable to be reset everytime the page is refreshed, so we set it only 
-														// when it is not set. i.e the first time
-						$_SESSION["CLUE_IDX"] = mt_rand(0,1); // The Zero to One correspond to the size of the $words array(size = 2)
-						$_SESSION["IMG_IDX"] = 0 ;
-					}
-					
-					//Making $_SESSION["CLUE_IDX"] more redable
-					
-					
-					
-					
+					include 'constants.php';
+					include 'functions.php';
+			
 					
 					
 					
@@ -86,6 +59,17 @@ session_start();
 					
 					//Another Immutable value?
 					//define('CLUE_IDX', mt_rand(0,1));
+					
+					
+					//Image Index to go through the Array of Images
+					//Depricated
+					//$img_idx = 0;
+					
+					
+					
+					
+						
+						
 					///////////// IGNORE////////////////////////
 					
 					
@@ -95,29 +79,28 @@ session_start();
 					echo "<h3>"."The word has ".strlen($words[$_SESSION["CLUE_IDX"]])." letters and is a " .$clues[$_SESSION["CLUE_IDX"]] ."</h3>";
 					
 				
-					//Image Index to go through the Array of Images
-					//Depricated
-					$img_idx = 0;
+					
 				
 					//Seeing if the User hit the Submit button. On the screen the button will show as "Enter". And making sure the User Input is not empty
-					if (isset($_POST['submit']) && trim($_POST['letter']) != ''){
-						//Reading the user input upon submit
-						$user_input = $_POST['letter'];
+					if (ifSubmit()){
 						
 						
+			
 						
 							//Checking to see if the User Input Ltter is inside of the word. Update Image if user input is not found in the word
 							//https://secure.php.net/manual/en/function.stripos.php
-							if( stripos($words[$_SESSION["CLUE_IDX"]], $user_input) === false ){
+							if( isUserInputCorrect() ){
 								
-								//Index out of Bounds protection. 3 is the size of the image array
-								if($_SESSION["IMG_IDX"]++ < 3){
-									echo "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
+									//Index out of Bounds protection. 3 is the size of the image array
+									if($_SESSION["IMG_IDX"] < 3){
+										echo "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
+										// Update Image Index	
+										updateImgIndex();
 									}
-								// Update Image Index	
-								$_SESSION["IMG_IDX"]++;
 								
-									if($_SESSION["IMG_IDX"]++ > 3){// 3 Corresponds to Size of Image Array
+								
+								
+									if($_SESSION["IMG_IDX"] > 3){// 3 Corresponds to Size of Image Array, if user has run out of tries
 										echo "<p>"."Game Over"."</p>";
 										// remove all session variables
 										session_unset(); 
@@ -127,6 +110,8 @@ session_start();
 									}
 								
 							}
+							
+						//discardOldValues();
 						
 					}
 					
