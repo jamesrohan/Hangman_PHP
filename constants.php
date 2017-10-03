@@ -14,7 +14,7 @@
 					if(!isset($_SESSION["CLUE_IDX"])){ // We dont want this variable to be reset everytime the page is refreshed, so we set it only 
 														// when it is not set. i.e the first time
 														
-						$_SESSION["CLUE_IDX"] = mt_rand(0,1); // The Zero to One correspond to the size of the $words array(size = 2)
+						$_SESSION["CLUE_IDX"] = mt_rand(0,2); // The Zero to One correspond to the size of the $words array(size = 2)
 						$_SESSION["IMG_IDX"] = 0 ;
 					}
 					
