@@ -2,7 +2,7 @@
 					
 					
 					//Array of Images
-					$images = array('./img/1.jpg', './img/2.jpg', './img/3.jpg');
+					$images = array('./img/1.png', './img/2.png', './img/3.png', './img/4.png', './img/5.png', './img/6.png', './img/7.png');$images = array('./img/1.png', './img/2.png', './img/3.png', './img/4.png', './img/5.png', './img/6.png', './img/7.png');
 					
 					//Array of "words and clues" their index's correspond 1 to 1
 					//Dictionary of Words to pick from

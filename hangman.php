@@ -28,15 +28,6 @@ session_start();
 		
 			<p>Guess the Letter</p>
 			
-			<!-- Letter Input Box -->
-			<p><input name="letter" type="text" size="20" /></p>
-			
-			<!-- Enter Button -->
-			<p>
-				<input type="submit" value="Enter" name="submit"></input>
-				<!-- <input type="submit" value="Enter" name="submit"></input> -->
-			</p>
-			
 			
 			<!-- Image Container -->
 			<p>
@@ -92,7 +83,7 @@ session_start();
 							if( isUserInputCorrect() ){
 								
 									//Index out of Bounds protection. 3 is the size of the image array
-									if($_SESSION["IMG_IDX"] < 3){
+									if($_SESSION["IMG_IDX"] < 7){
 										echo "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
 										// Update Image Index	
 										updateImgIndex();
@@ -100,7 +91,7 @@ session_start();
 								
 								
 								
-									if($_SESSION["IMG_IDX"] > 3){// 3 Corresponds to Size of Image Array, if user has run out of tries
+									if($_SESSION["IMG_IDX"] == 7){// 3 Corresponds to Size of Image Array, if user has run out of tries
 										echo "<p>"."Game Over"."</p>";
 										// remove all session variables
 										session_unset(); 
@@ -110,12 +101,21 @@ session_start();
 									}
 								
 							}
-							
+											
 						//discardOldValues();
 						
 					}
 					
 				?>
+			</p>
+			
+			<!-- Letter Input Box -->
+			<p><input name="letter" type="text" size="20" /></p>
+			
+			<!-- Enter Button -->
+			<p>
+				<input type="submit" value="Enter" name="submit"></input>
+				<!-- <input type="submit" value="Enter" name="submit"></input> -->
 			</p>
 			
 		</form>

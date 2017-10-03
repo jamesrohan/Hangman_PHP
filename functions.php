@@ -39,5 +39,4 @@ function updateImgIndex(){
 	$_SESSION["IMG_IDX"]++;
 }
 
-
 ?>
