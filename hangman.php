@@ -10,7 +10,7 @@ session_start();
   <title>Hangman</title>
   <link rel="stylesheet" type="text/css" href=""> </link>	
   <style>
-	<?php include ''; ?>
+	<?php include './css/hangman.css'; ?>
   </style>
 
  </head>
