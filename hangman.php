@@ -7,6 +7,7 @@ newSession();
 ?>
 
 
+	  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
@@ -18,20 +19,24 @@ newSession();
 
  </head>
  <body>
-		
+	<?php	
+		//print_r($_SESSION);
+	?>
+	
 	<p>
 		<h1> Hangman </h1>	 
 	</p>
 	
 	<p>
 		<form method="post">
-					
+			<!-- <p> <?php //echo $words[$clue_index]; ?> </p> -->			  
+		
 			<p>Guess the Letter</p>
 			
 			<!-- Image Container -->
 			<p>
 				<?php
-				//the "_" array.
+					//the "_" array.
 					$p_arr = $_SESSION["USR_OUT"];
 					$img_hang = "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
 					$out_arr = '<div style="font-size: 28px;">' . implode(" ", $p_arr) . "</div>";

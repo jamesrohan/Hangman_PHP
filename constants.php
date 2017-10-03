@@ -2,13 +2,12 @@
 					
 					
 					//Array of Images
-					$images = array('./img/1.png', './img/2.png', './img/3.png', './img/4.png', './img/5.png', './img/6.png', './img/7.png');$images = array('./img/1.png', './img/2.png', './img/3.png', './img/4.png', './img/5.png', './img/6.png', './img/7.png');
-					
+					$images = array('./img/1.png', './img/2.png', './img/3.png', './img/4.png', './img/5.png', './img/6.png', './img/7.png');
 					//Array of "words and clues" their index's correspond 1 to 1
 					//Dictionary of Words to pick from
-					$words = array("Carrot", "Banana");
+					$words = array("Carrot", "Banana", "Eggplant");
 					//$GLOBALS[w] = $words;
-					$clues = array('Vegetable','Fruit');
+					$clues = array('Vegetable','Fruit','Vegetable');
 					
 					//Picking a random word from the above defined Word dictionary
 					if(!isset($_SESSION["CLUE_IDX"])){ // We dont want this variable to be reset everytime the page is refreshed, so we set it only 
