@@ -10,7 +10,7 @@ session_start();
   <title>Hangman</title>
   <link rel="stylesheet" type="text/css" href=""> </link>	
   <style>
-	<?php include ''; ?>
+	<?php include './css/hangman.css'; ?>
   </style>
 
  </head>
@@ -27,15 +27,6 @@ session_start();
 			  
 		
 			<p>Guess the Letter</p>
-			
-			<!-- Letter Input Box -->
-			<p><input name="letter" type="text" size="20" /></p>
-			
-			<!-- Enter Button -->
-			<p>
-				<input type="submit" value="Enter" name="submit"></input>
-				<!-- <input type="submit" value="Enter" name="submit"></input> -->
-			</p>
 			
 			
 			<!-- Image Container -->
@@ -92,7 +83,7 @@ session_start();
 							if( stripos($words[$_SESSION["CLUE_IDX"]], $_POST['letter']) == false){
 								
 									//Index out of Bounds protection. 3 is the size of the image array
-									if($_SESSION["IMG_IDX"] < 3){
+									if($_SESSION["IMG_IDX"] < 7){
 										echo "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
 										// Update Image Index	
 										//updateImgIndex();
@@ -100,6 +91,14 @@ session_start();
 										echo "<p>"."Image Index: ". $_SESSION["IMG_IDX"]."</p>";
 										
 										if( $_SESSION["IMG_IDX"] > 3){// 3 Corresponds to Size of Image Array, if user has run out of tries
+
+										updateImgIndex();
+									}
+								
+								
+								
+									if($_SESSION["IMG_IDX"] == 7){// 3 Corresponds to Size of Image Array, if user has run out of tries
+
 										echo "<p>"."Game Over"."</p>";
 										
 										}
@@ -111,14 +110,25 @@ session_start();
 									
 								
 							}
+
 							
 							
 							
+
 						//discardOldValues();
 						
 					}
 					
 				?>
+			</p>
+			
+			<!-- Letter Input Box -->
+			<p><input name="letter" type="text" size="20" /></p>
+			
+			<!-- Enter Button -->
+			<p>
+				<input type="submit" value="Enter" name="submit"></input>
+				<!-- <input type="submit" value="Enter" name="submit"></input> -->
 			</p>
 			
 		</form>
