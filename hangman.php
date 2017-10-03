@@ -45,8 +45,8 @@ session_start();
 					include 'constants.php';
 					include 'functions.php';
 			
-					
-					
+					//$_SESSION = array();
+					//$_POST = array();
 					
 					///////////// IGNORE////////////////////////
 					/////clue_index is set during the first page load. It is not changed everytime the page is refreshed due to 
@@ -78,38 +78,41 @@ session_start();
 					//Giving the user the clue and the word size
 					echo "<h3>"."The word has ".strlen($words[$_SESSION["CLUE_IDX"]])." letters and is a " .$clues[$_SESSION["CLUE_IDX"]] ."</h3>";
 					
-				
+
 					
 				
 					//Seeing if the User hit the Submit button. On the screen the button will show as "Enter". And making sure the User Input is not empty
-					if (ifSubmit()){
+					if (isset($_POST['submit']) && isset($_POST['letter'])){
 						
 						
 			
 						
 							//Checking to see if the User Input Ltter is inside of the word. Update Image if user input is not found in the word
 							//https://secure.php.net/manual/en/function.stripos.php
-							if( isUserInputCorrect() ){
+							if( stripos($words[$_SESSION["CLUE_IDX"]], $_POST['letter']) == false){
 								
 									//Index out of Bounds protection. 3 is the size of the image array
 									if($_SESSION["IMG_IDX"] < 3){
 										echo "<img src=\" ". $images[$_SESSION["IMG_IDX"]] .  " \" >"."</img>";
 										// Update Image Index	
-										updateImgIndex();
-									}
-								
-								
-								
-									if($_SESSION["IMG_IDX"] > 3){// 3 Corresponds to Size of Image Array, if user has run out of tries
+										//updateImgIndex();
+										$_SESSION["IMG_IDX"]++;
+										echo "<p>"."Image Index: ". $_SESSION["IMG_IDX"]."</p>";
+										
+										if( $_SESSION["IMG_IDX"] > 3){// 3 Corresponds to Size of Image Array, if user has run out of tries
 										echo "<p>"."Game Over"."</p>";
-										// remove all session variables
-										session_unset(); 
+										
+										}
 
-										// destroy the session 
-										session_destroy(); 
 									}
+								
+								
+									
+									
 								
 							}
+							
+							
 							
 						//discardOldValues();
 						
