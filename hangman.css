@@ -1,16 +1,25 @@
 body{
-	background-color: #B0C4DE;
+	background-image: url("hang.jpg");
 	padding-top: 10vh;
 	text-align: center; 
-	content-align: center;
+    content-align: center;
+    color:teal;
+    font-family: cursive;
+    
 }
 
 img{
-	height: 200px;
-	width: 200px;
+	height: 300px;
+	width: 300px;
 }
 
-.usr_out {
-	font-size = 35px;
-	font-weight: bold;
+h1{
+    color: white;
+    font-size: 60px;
+    
+
+}
+
+p{
+    color: white;
 }
